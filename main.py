@@ -17,7 +17,7 @@ import json
 # introduce multiple tabs to keep different conversions open at the same time
 
 
-# --- UI SETUP --- #
+# -------- UI SETUP -------- #
 
 
 root = Tk()
@@ -33,25 +33,25 @@ widgets_frame.grid(row=0, column=1, padx=10, pady=(30, 10), sticky="nsew", rowsp
 widgets_frame.columnconfigure(index=0, weight=1)
 
 
-# --- CANVAS & WIDGETS --- #
+# -------- CANVAS & WIDGETS -------- #
 
 
-text_entry = ttk.Entry(widgets_frame, width=70)
-text_entry.insert(0, "")
-text_entry.grid(row=0, column=0, padx=5, pady=(0, 10), sticky="ew", columnspan=6)
+text_input = ttk.Entry(widgets_frame, width=70)
+text_input.insert(0, "")
+text_input.grid(row=0, column=0, padx=5, pady=(0, 10), sticky="ew", columnspan=6)
 
 text_output = ttk.Entry(widgets_frame, width=70)
 text_output.insert(0, "")
 text_output.grid(row=2, column=0, padx=5, pady=(10, 10), sticky="ew", columnspan=6)
 
 
-# --- BUTTONS --- #
+# -------- BUTTONS -------- #
 
 # --- FUTHARK --- #
 
 def futhark_conversion():
     text_output.delete(0, END)
-    my_input = text_entry.get().upper()
+    my_input = text_input.get().upper()
     futhark = []
     with open("futhark.json", encoding="utf8") as f:
         futhark_dic = json.load(f)
@@ -73,100 +73,106 @@ def futhark_conversion():
     my_output = ' '.join([str(letter) for letter in futhark])
     text_output.insert(END, my_output)
 
+
 button_futhark = ttk.Button(widgets_frame, text="FUTHARK", command=futhark_conversion, style="Accent.TButton")
-button_futhark.grid(column=0, row=1, padx=5)
+button_futhark.grid(column=0, row=1, padx=3)
+
 
 # --- GLAGOLITIC --- #
 
-def glagoljica_conversion():
+def glagolitic_conversion():
     text_output.delete(0, END)
-    my_input = text_entry.get().upper()
-    glagoljica = []
+    my_input = text_input.get().upper()
+    glagolitic = []
     with open("glagoljica.json", encoding="utf8") as g:
-        glagoljica_dic = json.load(g)
+        glagolitic_dic = json.load(g)
         for item in my_input:
             if item == "J":
                 if my_input[my_input.index(item) - 1] == "N":
-                    glagoljica.pop()
-                    glagoljica.append(glagoljica_dic["NJ"])
+                    glagolitic.pop()
+                    glagolitic.append(glagolitic_dic["NJ"])
                 elif my_input[my_input.index(item) - 1] == "L":
-                    glagoljica.pop()
-                    glagoljica.append(glagoljica_dic["LJ"])
+                    glagolitic.pop()
+                    glagolitic.append(glagolitic_dic["LJ"])
                 else:
-                    glagoljica.append(glagoljica_dic[item])
+                    glagolitic.append(glagolitic_dic[item])
             elif item == "Ž":
                 if my_input[my_input.index(item) - 1] == "D":
-                    glagoljica.pop()
-                    glagoljica.append(glagoljica_dic["DŽ"])
+                    glagolitic.pop()
+                    glagolitic.append(glagolitic_dic["DŽ"])
                 else:
-                    glagoljica.append(glagoljica_dic[item])
+                    glagolitic.append(glagolitic_dic[item])
             else:
-                glagoljica.append(glagoljica_dic[item])
-    my_output = ' '.join([str(letter) for letter in glagoljica])
+                glagolitic.append(glagolitic_dic[item])
+    my_output = ' '.join([str(letter) for letter in glagolitic])
     text_output.insert(END, my_output)
 
-button_glagolitic = ttk.Button(widgets_frame, text="GLAGOLITIC", command=glagoljica_conversion, style="Accent.TButton")
-button_glagolitic.grid(column=1, row=1, padx=5)
+
+button_glagolitic = ttk.Button(widgets_frame, text="GLAGOLITIC", command=glagolitic_conversion, style="Accent.TButton")
+button_glagolitic.grid(column=1, row=1, padx=3)
+
 
 # --- CYRILLIC --- #
 
-def cirilica_conversion():
+def cyrillic_conversion():
     text_output.delete(0, END)
-    my_input = text_entry.get()
-    cirilica = []
+    my_input = text_input.get()
+    cyrillic = []
     with open("cirilica.json", encoding="utf8") as c:
-        cirilica_dic = json.load(c)
+        cyrillic_dic = json.load(c)
         for item in my_input:
             if item == "J":
                 if my_input[my_input.index(item) - 1] == "N":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["NJ"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["NJ"])
                 elif my_input[my_input.index(item) - 1] == "L":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["LJ"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["LJ"])
                 else:
-                    cirilica.append(cirilica_dic[item])
+                    cyrillic.append(cyrillic_dic[item])
             elif item == "Ž":
                 if my_input[my_input.index(item) - 1] == "D":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["DŽ"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["DŽ"])
             elif item == "j":
                 if my_input[my_input.index(item) - 1] == "n":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["nj"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["nj"])
                 elif my_input[my_input.index(item) - 1] == "l":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["lj"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["lj"])
                 elif my_input[my_input.index(item) - 1] == "L":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["LJ"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["LJ"])
                 elif my_input[my_input.index(item) - 1] == "N":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["NJ"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["NJ"])
                 else:
-                    cirilica.append(cirilica_dic[item])
+                    cyrillic.append(cyrillic_dic[item])
             elif item == "ž":
                 if my_input[my_input.index(item) - 1] == "d":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["dž"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["dž"])
                 elif my_input[my_input.index(item) - 1] == "D":
-                    cirilica.pop()
-                    cirilica.append(cirilica_dic["DŽ"])
+                    cyrillic.pop()
+                    cyrillic.append(cyrillic_dic["DŽ"])
                 else:
-                    cirilica.append(cirilica_dic[item])
+                    cyrillic.append(cyrillic_dic[item])
             else:
-                cirilica.append(cirilica_dic[item])
-    my_output = ' '.join([str(letter) for letter in cirilica])
+                cyrillic.append(cyrillic_dic[item])
+    my_output = ' '.join([str(letter) for letter in cyrillic])
     text_output.insert(END, my_output)
 
-button_cyrillic = ttk.Button(widgets_frame, text="CYRILLIC", command=cirilica_conversion, style="Accent.TButton")
-button_cyrillic.grid(column=2, row=1, padx=5)
+
+button_cyrillic = ttk.Button(widgets_frame, text="CYRILLIC", command=cyrillic_conversion, style="Accent.TButton")
+button_cyrillic.grid(column=2, row=1, padx=3)
+
 
 # --- NATO --- #
 
 def nato_conversion():
     text_output.delete(0, END)
-    my_input = text_entry.get().upper()
+    my_input = text_input.get().upper()
     nato_code = []
     with open("nato.json", encoding="utf8") as n:
         nato_dic = json.load(n)
@@ -175,14 +181,16 @@ def nato_conversion():
     my_output = ' '.join([str(letter) for letter in nato_code])
     text_output.insert(END, my_output)
 
+
 button_nato = ttk.Button(widgets_frame, text="NATO", command=nato_conversion, style="Accent.TButton")
-button_nato.grid(column=3, row=1)
+button_nato.grid(column=3, row=1, padx=3)
+
 
 # --- MORSE --- #
 
 def morse_conversion():
     text_output.delete(0, END)
-    my_input = text_entry.get().upper()
+    my_input = text_input.get().upper()
     morse_code = []
     with open("morse.json", encoding="utf8") as m:
         morse_dic = json.load(m)
@@ -207,52 +215,54 @@ def morse_conversion():
     my_output = ' '.join([str(letter) for letter in morse_code])
     text_output.insert(END, my_output)
 
+
 button_morse = ttk.Button(widgets_frame, text="MORSE", command=morse_conversion, style="Accent.TButton")
-button_morse.grid(column=4, row=1, padx=5)
+button_morse.grid(column=4, row=1, padx=3)
 
 # --- BINARY --- #
 
 def binary_conversion():
     text_output.delete(0, END)
-    my_input = text_entry.get()
-    binary = []
+    my_input = text_input.get()
+    binary_code = []
     with open("binary.json", encoding="utf8") as b:
         binary_dic = json.load(b)
         for item in my_input:
             if item == "J":
                 if my_input[my_input.index(item) - 1] == "N":
-                    binary.pop()
-                    binary.append(binary_dic["NJ"])
+                    binary_code.pop()
+                    binary_code.append(binary_dic["NJ"])
                 elif my_input[my_input.index(item) - 1] == "L":
-                    binary.pop()
-                    binary.append(binary_dic["LJ"])
+                    binary_code.pop()
+                    binary_code.append(binary_dic["LJ"])
                 else:
-                    binary.append(binary_dic[item])
+                    binary_code.append(binary_dic[item])
             elif item == "j":
                 if my_input[my_input.index(item) - 1] == "n":
-                    binary.pop()
-                    binary.append(binary_dic["nj"])
+                    binary_code.pop()
+                    binary_code.append(binary_dic["nj"])
                 elif my_input[my_input.index(item) - 1] == "l":
-                    binary.pop()
-                    binary.append(binary_dic["lj"])
+                    binary_code.pop()
+                    binary_code.append(binary_dic["lj"])
                 else:
-                    binary.append(binary_dic[item])
+                    binary_code.append(binary_dic[item])
             elif item == "Ž":
                 if my_input[my_input.index(item) - 1] == "D":
-                    binary.pop()
-                    binary.append(binary_dic["DŽ"])
+                    binary_code.pop()
+                    binary_code.append(binary_dic["DŽ"])
             elif item == "ž":
                 if my_input[my_input.index(item) - 1] == "d":
-                    binary.pop()
-                    binary.append(binary_dic["dž"])
+                    binary_code.pop()
+                    binary_code.append(binary_dic["dž"])
                 else:
-                    binary.append(binary_dic[item])
+                    binary_code.append(binary_dic[item])
             else:
-                binary.append(binary_dic[item])
-    my_output = ' '.join([str(letter) for letter in binary])
+                binary_code.append(binary_dic[item])
+    my_output = ' '.join([str(letter) for letter in binary_code])
     text_output.insert(END, my_output)
 
+
 button_binary = ttk.Button(widgets_frame, text="BINARY", command=binary_conversion, style="Accent.TButton")
-button_binary.grid(column=5, row=1, padx=5)
+button_binary.grid(column=5, row=1, padx=3)
 
 root.mainloop()
