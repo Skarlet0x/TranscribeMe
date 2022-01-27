@@ -4,6 +4,19 @@ from tkinter import *
 from tkinter import ttk
 import json
 
+# --- TO DO LIST --- #
+
+# figure out the width on the entry widget
+# or
+# exchange it for a text widget
+
+# look into the padding problem between buttons
+
+# introduce a pic/logo
+
+# introduce multiple tabs to keep different conversions open at the same time
+
+
 # --- UI SETUP --- #
 
 
