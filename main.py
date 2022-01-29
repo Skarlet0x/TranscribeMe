@@ -6,14 +6,7 @@ import json
 
 # --- TO DO LIST --- #
 
-# figure out the width on the entry widget
-# or
-# exchange it for a text widget
-
-# look into the padding problem between buttons
-
-# introduce a pic/logo
-
+# crop the pic - not centered !
 # introduce multiple tabs to keep different conversions open at the same time
 
 
@@ -23,7 +16,7 @@ import json
 root = Tk()
 root.call("source", r"C:\Users\Petra Bajac\PycharmProjects\themes\Forest Theme\forest-dark.tcl")
 root.minsize(width=600, height=100)
-root.config(padx=50, pady=50)
+root.config(padx=50, pady=0)
 root.title("Converter")
 
 ttk.Style().theme_use('forest-dark')
@@ -32,22 +25,46 @@ widgets_frame = ttk.Frame(root, padding=(0, 0, 0, 10))
 widgets_frame.grid(row=0, column=1, padx=10, pady=(30, 10), sticky="nsew", rowspan=3)
 widgets_frame.columnconfigure(index=0, weight=1)
 
-
 # -------- CANVAS & WIDGETS -------- #
 
 
+image = PhotoImage(file='converter.png')
+my_logo = Label(widgets_frame, image=image)
+my_logo.grid(row=0, column=0, columnspan=6)
+
 text_input = ttk.Entry(widgets_frame, width=70)
 text_input.insert(0, "")
-text_input.grid(row=0, column=0, padx=5, pady=(0, 10), sticky="ew", columnspan=6)
+text_input.grid(row=1, column=0, padx=5, pady=(0, 10), sticky="ew", columnspan=6, ipady=20)
 
 text_output = ttk.Entry(widgets_frame, width=70)
 text_output.insert(0, "")
-text_output.grid(row=2, column=0, padx=5, pady=(10, 10), sticky="ew", columnspan=6)
+text_output.grid(row=3, column=0, padx=5, pady=(10, 10), sticky="ew", columnspan=6, ipady=20)
 
 
 # -------- BUTTONS -------- #
 
+
+def copy_to_clipboard():
+    my_text = text_output.get()
+    root.clipboard_clear()
+    root.clipboard_append(my_text)
+
+
+clipboard_button = ttk.Button(widgets_frame, text="COPY TO CLIPBOARD", command=copy_to_clipboard)
+clipboard_button.grid(column=4, row=6, columnspan=6, pady=(10, 10))
+
+
+def clear_all():
+    text_output.delete(0, END)
+    text_input.delete(0, END)
+
+
+clear_button = ttk.Button(widgets_frame, text="CLEAR ALL", command=clear_all)
+clear_button.grid(column=3, row=6, sticky="ew", pady=(10, 10))
+
+
 # --- FUTHARK --- #
+
 
 def futhark_conversion():
     text_output.delete(0, END)
@@ -75,7 +92,7 @@ def futhark_conversion():
 
 
 button_futhark = ttk.Button(widgets_frame, text="FUTHARK", command=futhark_conversion, style="Accent.TButton")
-button_futhark.grid(column=0, row=1, padx=3)
+button_futhark.grid(column=0, row=2, padx=3)
 
 
 # --- GLAGOLITIC --- #
@@ -109,7 +126,7 @@ def glagolitic_conversion():
 
 
 button_glagolitic = ttk.Button(widgets_frame, text="GLAGOLITIC", command=glagolitic_conversion, style="Accent.TButton")
-button_glagolitic.grid(column=1, row=1, padx=3)
+button_glagolitic.grid(column=1, row=2, padx=3)
 
 
 # --- CYRILLIC --- #
@@ -165,7 +182,7 @@ def cyrillic_conversion():
 
 
 button_cyrillic = ttk.Button(widgets_frame, text="CYRILLIC", command=cyrillic_conversion, style="Accent.TButton")
-button_cyrillic.grid(column=2, row=1, padx=3)
+button_cyrillic.grid(column=2, row=2, padx=3)
 
 
 # --- NATO --- #
@@ -183,7 +200,7 @@ def nato_conversion():
 
 
 button_nato = ttk.Button(widgets_frame, text="NATO", command=nato_conversion, style="Accent.TButton")
-button_nato.grid(column=3, row=1, padx=3)
+button_nato.grid(column=3, row=2, padx=3)
 
 
 # --- MORSE --- #
@@ -217,7 +234,8 @@ def morse_conversion():
 
 
 button_morse = ttk.Button(widgets_frame, text="MORSE", command=morse_conversion, style="Accent.TButton")
-button_morse.grid(column=4, row=1, padx=3)
+button_morse.grid(column=4, row=2, padx=3)
+
 
 # --- BINARY --- #
 
@@ -263,6 +281,6 @@ def binary_conversion():
 
 
 button_binary = ttk.Button(widgets_frame, text="BINARY", command=binary_conversion, style="Accent.TButton")
-button_binary.grid(column=5, row=1, padx=3)
+button_binary.grid(column=5, row=2, padx=3)
 
 root.mainloop()
