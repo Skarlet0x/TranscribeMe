@@ -4,14 +4,17 @@
 This converter app enables the user to transcribe the latinic script into six other alphabetic systems with just a press of a corresponding button. 
 
 # Special Remarks
-- The converter is optimised for using _English_ or _Croatian_ as input languages and their corresponding special characters
+The converter is optimised for using _English_ or _Croatian_ as input languages and their corresponding special characters.
 
-- The principle of romanisation was used to switch respective non-existing characters according to the following formula:
+
+The principle of romanisation was used to switch respective non-existing characters according to the following formula:
 - **Y X Q W** - _j ks kv v_ - for English into Cyrillic and Glagolitic
 - **Č Ć Đ DŽ Š Ž** - _ch ch dj dj sh zh_ - for Croatian into Futhark and NATO
 
-- The Cyrillic script uses the **Serbian variation**
-- Binary code conversion treats numbers in the input as strings, and differs from actual code corresponding to numerals
+The Cyrillic script uses the **Serbian variation**.
+
+
+Binary code conversion treats numbers in the input as strings, and differs from actual code corresponding to numerals.
 
 # The Idea
 Ever since I encountered the Glagolitic script in school, I have been fascinated with different writing systems, both dead and those still in use today. I learned to use the Glagolitza at the age of 8, and Futhark at the age of 12. Both were usually used to pass secret notes to my classmates, or just for fun. 
