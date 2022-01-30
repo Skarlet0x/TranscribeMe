@@ -21,7 +21,7 @@ Ever since I encountered the Glagolitic script in school, I have been fascinated
 
 Recently, I took it upon myself to learn the Cyrillic Alphabet, too, as I thought that could actually be a useful skill in the 21st century, compared to these two dead scripts, as many Slavic countries still use it as their official orthographies (albeit each their own slightly modified versions). Today I can write and read in these three writing systems _fluently_, while also learning Morse code and the Greek Alphabet. 
 
-When I started learning Python, I wanted to build a different project than those usually suggested for beginners, such as the Pomodoro clock or a Password manager, to utilize my freshly learned skills in file management and buidling a functional UI. Combining my passion for all things linguistic with my programming skills turned out to be a great idea. 
+When I started learning Python, I wanted to build a different project than those usually suggested for beginners, such as the Pomodoro clock or a Password manager, to utilize my newly acquired skills in file management and buidling a functional UI. Combining my passion for all things linguistic with my programming skills turned out to be a great idea. 
 
 # Possible Improvements
 - Given its simple nature, this converter would definitely be more suitable as a mobile app
