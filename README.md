@@ -1,7 +1,7 @@
 # TranscribeMe
 ![Screenshot](preview.JPG)
 
-This converter app enables the user to transcribe the latinic script into six other alphabetic systems with just a press of a corresponding button. 
+This converter app enables the user to transcribe the Latinic script into six other alphabetic systems with just a press of the corresponding button. 
 
 # Special Remarks
 The converter is optimised for using _English_ or _Croatian_ as input languages and their corresponding special characters.
